@@ -5,11 +5,13 @@
 # and when a user adds a printer, this removes the auth requirement
 # Created By: Brandon Penglase
 # Creation Date: 09/17/09
-# Modified On: 10/07/10
+# Modified On: 10/19/10
 # Modified By: Brandon Penglase
 # ChangeLog:
 #	0.1: Inital Release
 #	0.2: Updated to look for the smb symlink, if it's not there, create it. 
+#	0.3: Updated to use sed file inline editing, instead of creating a new file
+#		and having to move that file back into place. 
 ##################
 DATE=`date "+%m%d%y-%H%M%S"`
 
@@ -22,17 +24,10 @@ if [ ! -L /usr/libexec/cups/backend/smb ]; then
 fi
 
 if grep -q "AuthInfoRequired" /etc/cups/printers.conf; then
-	if [ ! -d /etc/cups/confbaks ]; then
-		mkdir /etc/cups/confbaks
-	fi
-	sed /AuthInfoRequired/d /etc/cups/printers.conf > /tmp/printers.conf
-	mv /etc/cups/printers.conf /etc/cups/confbaks/printers.conf-${DATE}
-	mv /tmp/printers.conf /etc/cups/printers.conf
-	chown root:_lp /etc/cups/printers.conf
-	chmod 600 /etc/cups/printers.conf 	
-	launchctl stop org.cups.cupsd
-	launchctl start org.cups.cupsd
-	echo ${DATE} "- Modified printers.conf" >> /var/log/krbprint.log
+        launchctl stop org.cups.cupsd
+        sed -i bak -e '/AuthInfoRequired/d' /etc/cups/printers.conf 
+        launchctl start org.cups.cupsd
+        echo ${DATE} "- Modified printers.conf" >> /var/log/krbprint.log
 else
 	echo ${DATE} "- No Modifications made." >> /var/log/krbprint.log
 fi

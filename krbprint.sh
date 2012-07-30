@@ -5,12 +5,21 @@
 # and when a user adds a printer, this removes the auth requirement
 # Created By: Brandon Penglase
 # Creation Date: 09/17/09
-# Modified On:
-# Modified By:
+# Modified On: 10/07/10
+# Modified By: Brandon Penglase
 # ChangeLog:
 #	0.1: Inital Release
+#	0.2: Updated to look for the smb symlink, if it's not there, create it. 
 ##################
 DATE=`date "+%m%d%y-%H%M%S"`
+
+# Check to see if /usr/libexec/cups/backend/smb is a symlink, if not, correct it.
+if [ ! -L /usr/libexec/cups/backend/smb ]; then
+	# It isn't, so fix that
+	echo ${DATE} "- Fixed SMB Symlink" >> /var/log/krbprint.log
+	mv /usr/libexec/cups/backend/smb /usr/libexec/cups/backend/smb-orig
+	ln -s /usr/local/bin/ksmbprintspool /usr/libexec/cups/backend/smb
+fi
 
 if grep -q "AuthInfoRequired" /etc/cups/printers.conf; then
 	if [ ! -d /etc/cups/confbaks ]; then

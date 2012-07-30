@@ -7,11 +7,11 @@ updated in the background without user interaction, so they end up with seamless
 
 Installation
 ========
-Package:
+### Package
 
 1. Grab krbprint/build/krbprint.pkg and install it as you would any other package. 
 
-Manually:
+### Manually
 
 1. Place edu.pct.krbprint.plist in /Library/LaunchDaemons
 2. Change ownership of this file to root:wheel (In terminal: sudo chown root:wheel /Library/LaunchDaemons/edu.pct.krbprint.plist)

@@ -2,6 +2,8 @@ krbprint
 ========
 
 Changes CUPS Authentication on a Mac OS X system from requiring a username and password, to using kerberos authentication. 
+This allows users to add printers through the GUI (System Preferences -> Print & Fax), and the authentication method gets
+updated in the background without user interaction, so they end up with seamless printing. 
 
 Installation
 ========
@@ -17,4 +19,6 @@ Notes
 This will always remove any entries that need username and password auth, and replace it with negotiation auth (Kerberos). 
 At the current time, this script does not allow these options to be mixed. 
 If you need both, do not use this script. 
+Only tested on 10.7.4, should work on 10.6.8 (not before .8, as Kerberos auth was not working then).
+Untested on 10.8.0 at the current time.
 

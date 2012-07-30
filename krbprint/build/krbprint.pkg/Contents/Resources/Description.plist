@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IFPkgDescriptionDeleteWarning</key>
+	<string></string>
+	<key>IFPkgDescriptionDescription</key>
+	<string>Changes CUPS Authentication on a Mac OS X system from requiring a username and password, to using kerberos authentication. This allows users to add printers through the GUI (System Preferences -&gt; Print &amp; Fax), and the authentication method gets updated in the background without user interaction, so they end up with seamless printing. </string>
+	<key>IFPkgDescriptionTitle</key>
+	<string>krbprint</string>
+	<key>IFPkgDescriptionVersion</key>
+	<string>0.4</string>
+</dict>
+</plist>

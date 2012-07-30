@@ -10,7 +10,7 @@ fi
 # If krbprint.sh exists, make sure ownership and permissions are correct
 if [ -e /usr/local/bin/krbprint.sh ]; then
 	chown root:wheel /usr/local/bin/krbprint.sh
-	chmod 666 /usr/local/bin/krbprint.sh
+	chmod 655 /usr/local/bin/krbprint.sh
 fi
 
 # If the LaunchD plist exists, make sure the ownership is correct
